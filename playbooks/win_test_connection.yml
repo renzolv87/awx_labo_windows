@@ -1,0 +1,5 @@
+---
+- hosts: "{{ hosts }}"
+  tasks:
+    - name: validamos conexion al servidor windows {{ hosts }}
+      win_ping:
