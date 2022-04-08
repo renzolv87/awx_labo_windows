@@ -10,17 +10,12 @@
        dest: "C:\\Temp\\{{ filename }}.txt"
        content: "{{ contenido }}"
      when: contenido is defined
-   - name: Nos aseguramos que el grupo {{ filegroup }} existe
-     win_group:
-       name: "{{ filegroup }}"
-       description: Lab Group
-       state: present
-   - name: Nos aseguramos que el usuario {{ fileowner }} y grupo {{ filegroup }} existe
+   - name: Nos aseguramos que el usuario {{ fileowner }} existe
      win_user:
        name: "{{ fileowner }}"
        state: present
        groups:
-         - "{{ filegroup }}"
+         - Users
    - name: Seteamos permisos {{ filegroup }} a fichero
      win_owner:
        path: "C:\\Temp\\{{ filename }}"
