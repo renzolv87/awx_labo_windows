@@ -6,3 +6,8 @@
       name: spooler
       state: stopped
       #start_mode: disabled
+
+      #Comandos en powershell para validar 
+      #Get-Service Spooler
+      #Start-Service Spooler
+      #Stop-Service Spooler
