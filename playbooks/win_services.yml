@@ -4,4 +4,5 @@
    - name: Stop service Print Spooler
      win_service:
       name: spooler
-      state: started
+      state: stopped
+      #start_mode: disabled
