@@ -10,8 +10,8 @@
      win_group:
        name: "{{ filegroup }}"
        description: Lab Group
-       state: present
-   - name: Nos aseguramos que el usuario {{ fileowner }} existe
+       state: absent
+   - name: Nos aseguramos que el usuario {{ fileowner }} y grupo {{ filegroup }} existe
      win_user:
        name: "{{ fileowner }}"
        state: present
