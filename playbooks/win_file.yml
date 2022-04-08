@@ -5,7 +5,7 @@
      win_copy:
        dest: "C:\\Temp\\{{ filename }}"
        content: "{{ contenido }}"
-     when: content is defined
+     when: contenido is defined
    - name: Nos aseguramos que el grupo {{ filegroup }} existe
      win_group:
        name: "{{ filegroup }}"
