@@ -5,3 +5,4 @@
      win_service:
       name: spooler
       state: stopped
+      start_mode: disabled
