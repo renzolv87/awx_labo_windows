@@ -7,14 +7,14 @@
        state: directory
    - name: Crear fichero {{ filename }} con contenido
      win_copy:
-       dest: "C:\\Temp\\{{ filename }}"
+       dest: "C:\\Temp\\{{ filename }}.txt"
        content: "{{ contenido }}"
      when: contenido is defined
    - name: Nos aseguramos que el grupo {{ filegroup }} existe
      win_group:
        name: "{{ filegroup }}"
        description: Lab Group
-       state: absent
+       state: present
    - name: Nos aseguramos que el usuario {{ fileowner }} y grupo {{ filegroup }} existe
      win_user:
        name: "{{ fileowner }}"
