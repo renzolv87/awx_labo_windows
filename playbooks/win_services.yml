@@ -1,0 +1,7 @@
+---
+- hosts: "{{ hosts }}"
+  tasks:
+   - name: Stop service spooler
+     win_service:
+      name: spooler
+      state: stopped
