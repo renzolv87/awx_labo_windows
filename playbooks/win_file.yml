@@ -13,10 +13,11 @@
    - name: Nos aseguramos que el usuario {{ fileowner }} existe
      win_user:
        name: "{{ fileowner }}"
+       description: "usuario creado por ansible"
        state: present
        groups:
          - Users
    - name: Seteamos permisos {{ filegroup }} a fichero
      win_owner:
-       path: "C:\\Temp\\{{ filename }}"
+       path: "C:\\Temp\\{{ filename }}.txt"
        user: "{{ fileowner }}"
