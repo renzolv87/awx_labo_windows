@@ -2,4 +2,4 @@
   src: ssh://git@github.com:ansible-collections/community.windows.git
   scm: git
   name: community.windows
-  role: community.windows
+  collection: community.windows
