@@ -1,0 +1,12 @@
+---
+# tasks file for apache
+
+- import_tasks: users/users.yml
+  tags: users
+
+- import_tasks: apache/apache.yml
+  tags: apache
+
+- import_tasks: notepad/notepad.yml
+  tags: notepad++ 
+
