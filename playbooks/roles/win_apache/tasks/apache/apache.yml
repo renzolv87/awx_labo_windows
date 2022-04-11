@@ -15,7 +15,8 @@
     state: present
 
 - name: Set ServerAdmin email adress 
-  community.windows.win_lineinfile:
+  #community.windows.win_lineinfile:
+  win_lineinfile:
     path: C:\Program Files (x86)\Apache Software Foundation\Apache2.2\conf\httpd.conf
     regex: '^ServerAdmin'
     line: 'ServerAdmin renzo@windows.com'
