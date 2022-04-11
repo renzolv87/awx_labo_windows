@@ -14,11 +14,11 @@
     path: '{{ apache_download_dir }}\httpd-2.2.25-win32-x86-no_ssl.msi'
     state: present
 
-# - name: Set ServerAdmin email adress 
-#   win_lineinfile:
-#     path: C:\Program Files (x86)\Apache Software Foundation\Apache2.2\conf\httpd.conf
-#     regex: '^ServerAdmin'
-#     line: 'ServerAdmin renzo@windows.com'
+- name: Set ServerAdmin email adress 
+  community.windows.win_lineinfile:
+    path: C:\Program Files (x86)\Apache Software Foundation\Apache2.2\conf\httpd.conf
+    regex: '^ServerAdmin'
+    line: 'ServerAdmin renzo@windows.com'
 
 - name: Copy a index.html file
   win_copy:
