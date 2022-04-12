@@ -1,3 +1,3 @@
--
-  name: https://github.com/ansible-collections/community.windows.git
+collections:
+- name: https://github.com/ansible-collections/community.windows.git
   type: git
