@@ -1,6 +1,4 @@
 ---
 - hosts: "{{ hosts }}"
-  # collections:
-  #   - community.windows
   roles:
     - win_apache
