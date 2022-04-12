@@ -1,6 +1,6 @@
 ---
 - hosts: "{{ hosts }}"
   collections:
-    - ansible_collections/community.windows
+    - ansible_collections/awx/community.windows
   roles:
     - win_apache
