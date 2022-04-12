@@ -1,3 +1,5 @@
 collections:
-- name: https://github.com/ansible-collections/community.windows.git
-  type: git
+  - name: awx.community.windows
+    src: https://github.com/ansible-collections/community.windows.git
+    scm: git
+    version: master
