@@ -1,4 +1,4 @@
-- name: community.windows
-  src: https://github.com/ansible-collections/community.windows.git
-  scm: git
-  collection: community.windows
+collections:
+  - name: community.windows
+    src: https://github.com/ansible-collections/community.windows.git
+    scm: git
