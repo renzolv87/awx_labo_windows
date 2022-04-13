@@ -19,8 +19,8 @@
   changed_when: False
   when: ansible_os_family == 'Windows'
 
-- debug:  
-    msg: "{{ path.stdout | regex_replace ('\\r\\n', '') }}"
+# - debug:  
+#     msg: "{{ path.stdout | regex_replace ('\\r\\n', '') }}"
 
 - name: Add Notepad++ to Path Variable on Windows hosts
   win_environment:
