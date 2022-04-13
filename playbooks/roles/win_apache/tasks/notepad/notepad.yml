@@ -14,7 +14,7 @@
   when: ansible_os_family == 'Windows'
 
 - name: Check Path Variable on Windows hosts
-  win_shell: $Env:Path
+  win_shell: $Env:Path | Foreach-Object {$_ -replace "stringtogetridof", ""}
   register: path
   changed_when: False
   when: ansible_os_family == 'Windows'
