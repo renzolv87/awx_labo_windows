@@ -23,7 +23,7 @@
   win_environment:
     state: present
     name: Path
-    value: '{{ path.stdout }};C:\Program Files (x86)\Notepad++'
+    value: '{{ path.stdout | regex_replace('\\r\\n', '') }};C:\Program Files (x86)\Notepad++'
     level: machine
   when: (path.stdout.find('Notepad++') == -1 ) and
         (ansible_os_family == 'Windows')
