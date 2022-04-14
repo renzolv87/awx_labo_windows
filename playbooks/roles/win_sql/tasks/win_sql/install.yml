@@ -53,6 +53,11 @@
     state: present
     include_sub_features: True
 
+- debug: 
+    msg: 
+      - "mssql_base_ldap_path: {{ mssql_base_ldap_path }}"
+      - "domain_controller: {{ domain_controller }}"
+
 # Setup service accounts
 #
 # We delegate this process to our domain controller since the required AD services are there for
@@ -65,7 +70,7 @@
     password: "{{ mssql_sqlsvc_account_pass }}"
     password_never_expires: yes
     user_cannot_change_password: yes
-    description: "SQL Service account for {{ inventory_hostname }}\\{{ mssql_instance_name }}"
+    description: "SQL Service account for {{ ansible_hostname }}\\{{ mssql_instance_name }}"
     state: present
     path: "{{ mssql_base_ldap_path }}"
     groups:
@@ -81,7 +86,7 @@
     password: "{{ mssql_agentsvc_account_pass }}"
     password_never_expires: yes
     user_cannot_change_password: yes
-    description: "SQL Agent service account for {{ inventory_hostname }}\\{{ mssql_instance_name }}"
+    description: "SQL Agent service account for {{ ansible_hostname }}\\{{ mssql_instance_name }}"
     state: present
     path: "{{ mssql_base_ldap_path }}"
     groups:
@@ -94,7 +99,7 @@
 # and execute a reboot, reboot activity can be controlled using the variable mssql_suppress_reboot
 
 - name: Ensure that a reboot is not pending
-  when: ansible_reboot_pending
+  when: ansible_reboot_pending == true
   debug:
     msg: 'Pending reboot detected'
   changed_when: true
@@ -226,7 +231,7 @@
 - name: Adjust Max Server Memory to {{ mssql_max_server_memory }}
   when: mssql_max_server_memory is defined
   win_dsc:
-    resource_name: SqlServerConfiguration 
+    resource_name: SqlConfiguration 
     InstanceName: "{{ mssql_instance_name }}"
     ServerName: "{{ ansible_hostname }}"
     OptionName: max server memory (MB)
@@ -237,7 +242,7 @@
 - name: Adjust Min Server Memory to {{ mssql_min_server_memory }}
   when: mssql_min_server_memory is defined
   win_dsc:
-    resource_name: SqlServerConfiguration 
+    resource_name: SqlConfiguration 
     ServerName: "{{ ansible_hostname }}"
     InstanceName: "{{ mssql_instance_name }}"
     OptionName: min server memory (MB)
@@ -247,9 +252,15 @@
 - name: Adjust Max Degree of Parallelism
   when: mssql_max_degree_of_parallelism is defined
   win_dsc:
-    resource_name: SqlServerConfiguration 
+    resource_name: SqlConfiguration 
     ServerName: "{{ ansible_hostname }}"
     InstanceName: "{{ mssql_instance_name }}"
     OptionName: max degree of parallelism
     OptionValue: "{{ mssql_max_degree_of_parallelism }}"
   tags: configure_sql
+
+- name: Install SQL Server Management Studio
+  win_chocolatey:
+    name: sql-server-management-studio
+    state: latest
+  tags: install_ssms

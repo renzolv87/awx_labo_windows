@@ -1,19 +1,40 @@
 ---
+- name: "Change the hostname to {{ hosts }}"
+  win_hostname:
+    name: "{{ hosts }}"
+  register: res_set_hostname
+
+- name: reboot windows
+  win_reboot:
+    msg: "Setting hostname. Rebooting..."
+    reboot_timeout: 3600
+    post_reboot_delay: 60
+  when: res_set_hostname.reboot_required
+
 - name: install ad
   win_feature:
     name: AD-Domain-Services
     include_management_tools: yes
     include_sub_features: yes
     state: present
-  register: result
+  register: result_install_ad
 
 - name: reboot windows
   win_reboot:
     msg: "Installing AD. Rebooting..."
     reboot_timeout: 3600
     post_reboot_delay: 60
+  when: result_install_ad.reboot_required
 
 - name: install domain
   win_domain:
     dns_domain_name: "{{ dns_name }}"
     safe_mode_password: "{{ safe_mode_password }}"
+  register: resutl_install_domain
+
+- name: reboot windows
+  win_reboot:
+    msg: "Installing Domain. Rebooting..."
+    reboot_timeout: 3600
+    post_reboot_delay: 60
+  when: resutl_install_domain.reboot_required
