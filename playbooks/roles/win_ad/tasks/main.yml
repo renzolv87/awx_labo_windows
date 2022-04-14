@@ -1,0 +1,5 @@
+---
+# tasks file for win_ad
+- import_tasks: win_ad/install.yml
+  tags: win_ad_install
+

@@ -4,7 +4,7 @@
   win_reboot:
     reboot_timeout: 3600
     post_reboot_delay: 60
-  when: mssql_suppress_reboot == False
+  when: mssql_suppress_reboot is false
 
 - name: restart sqlagent
   win_service:

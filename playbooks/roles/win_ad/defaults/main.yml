@@ -1,0 +1,4 @@
+---
+# defaults file for win_ad
+dns_name: ad.awx_labo_windows.com
+safe_mode_password: "tsystems;2021"
