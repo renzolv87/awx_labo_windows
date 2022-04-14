@@ -1,0 +1,5 @@
+---
+# tasks file for apache
+- import_tasks: win_sql/install.yml
+  tags: win_sql_install
+
