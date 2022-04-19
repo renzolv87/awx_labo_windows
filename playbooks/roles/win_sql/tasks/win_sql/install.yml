@@ -264,3 +264,38 @@
     name: sql-server-management-studio
     state: latest
   tags: install_ssms
+
+# - name: Install python
+#   win_chocolatey:
+#     name: "{{ item }}"
+#     state: latest
+#   with_items:
+#   - python
+#   tags: install_python
+
+# - name: Create a new database with name 'ansibledb'
+#   mssql_db:
+#     #login_host: "{{ ansible_host }}"
+#     # login_user: "AD/Administrator"
+#     # login_password: "Zuerstoffnen00"
+#     state: present
+#     name: "ansibledb"
+#   #delegate_to: localhost
+#   tags: test
+
+# - name: Copy dump to server
+#   win_copy:
+#     src: dump.sql
+#     dest: "{{ mssql_temp_download_path }}"
+#   tags: test2
+
+# - name: Restore the dump file to database 'ansibledb'
+#   mssql_db:
+#     name: ansibledb
+#     state: import
+#     target: "{{ mssql_temp_download_path }}/dump.sql"
+#     login_host: "{{ ansible_host }}"
+#     login_user: "{{ mssql_sysadmin_accounts }}"
+#     login_password: "{{ mssql_asadmin_accounts }}"
+#   delegate_to: localhost
+#   tags: test3
