@@ -259,11 +259,11 @@
     OptionValue: "{{ mssql_max_degree_of_parallelism }}"
   tags: configure_sql
 
-- name: Install SQL Server Management Studio
-  win_chocolatey:
-    name: sql-server-management-studio
-    state: latest
-  tags: install_ssms
+# - name: Install SQL Server Management Studio
+#   win_package:
+#     name: sql-server-management-studio
+#     state: present
+#   tags: install_ssms
 
 # - name: Install python
 #   win_chocolatey:
