@@ -10,3 +10,12 @@
         - rlujan
         - dbolivar
         - aitolive
+    - name: copy files
+      win_copy:
+        src: "/var/tmp/{{ item }}"
+        dest: C:\Temp\
+        remote_src: no
+      with_items:
+        - file1.txt
+        - file2.txt
+        - file3.txt
