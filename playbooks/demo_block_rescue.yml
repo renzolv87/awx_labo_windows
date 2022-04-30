@@ -1,0 +1,18 @@
+---
+- hosts: "{{ hosts }}"
+  tasks:
+    - name: get files
+      block:
+      - win_uri:
+          url: "http://{{ item }}"
+        with_items: 
+        - windows01
+        - windows02
+        - windows03
+      rescue:
+        - debug:
+            msg: "Debes levantar apache"
+      always:
+        - debug:
+            msg: "Siempre ejecuto esto"
+       
