@@ -1,0 +1,12 @@
+---
+- hosts: "{{ hosts }}"
+  tasks:
+    - name: create users
+      win_user:
+        name: "{{ item }}"
+        description: "usuario creado por ansible"
+        state: present
+      with_items:
+        - rlujan
+        - dbolivar
+        - aitolive
