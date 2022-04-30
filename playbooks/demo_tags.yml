@@ -5,39 +5,48 @@
       win_file:
         path: C:\Temp
         state: directory
+      tags: preinstall
     - name: Download the Apache installer
       win_get_url:
         url: https://archive.apache.org/dist/httpd/binaries/win32/httpd-2.2.25-win32-x86-no_ssl.msi
         dest: C:\Temp
+      tags: preinstall
     - name: Install MSI of Apache
       win_package:
         path: 'C:\Temp\httpd-2.2.25-win32-x86-no_ssl.msi'
         state: present
+      tags: install
     - name: Set ServerAdmin email adress 
       win_lineinfile:
         path: C:\Program Files (x86)\Apache Software Foundation\Apache2.2\conf\httpd.conf
         regex: '^ServerAdmin'
         line: 'ServerAdmin renzo@windows.com'
+      tags: config
     - name: Creating index file
       win_copy:
         content: 'Hello World!'
         dest: C:\Program Files (x86)\Apache Software Foundation\Apache2.2\htdocs\index.html
+      tags: config
     - name: Check if Service Apache2.2 exists
       win_service:
         name: Apache2.2 
       register: apache_service 
+      tags: config
     - name: debug vemos que hemos guardado en la variable apache_service
       debug:
         msg: "{{ apache_service }}"
+      tags: config
     - name: create apache service
       win_shell: '"C:\Program Files (x86)\Apache Software Foundation\Apache2.2\bin\httpd.exe" -k install'
       args:
         executable: cmd
       when: not apache_service.exists
+      tags: config
     - name: Iniciamos el servicio Apache2.2 
       win_service:
         name: Apache2.2 
         state: started 
+      tags: config
     - name: Abrimos el puerto 80
       win_firewall_rule:
         name: HTTP
@@ -47,3 +56,23 @@
         protocol: tcp
         state: present
         enabled: yes
+      tags: config
+    - name: Uninstall MSI of Apache
+      win_package:
+        path: 'C:\Temp\httpd-2.2.25-win32-x86-no_ssl.msi'
+        state: absent
+      tags: uninstall
+    - name: Remove Service Apache2.2 
+      win_service:
+        name: Apache2.2 
+        state: absent
+      tags: uninstall
+    - name: Cerramos el puerto 80
+      win_firewall_rule:
+        name: HTTP
+        localport: 80
+        action: allow
+        direction: in
+        protocol: tcp
+        state: absent
+      tags: uninstall
