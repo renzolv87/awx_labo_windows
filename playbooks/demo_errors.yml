@@ -1,0 +1,11 @@
+---
+- hosts: "{{ hosts }}"
+  tasks:
+    - name: get files
+      win_uri:
+        url: "http://{{ item }}"
+      ignore_errors: true
+      with_items:
+        - windows01
+        - windows02
+        - windows03

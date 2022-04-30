@@ -38,6 +38,15 @@
       win_service:
         name: Apache2.2 
         state: started 
+    - name: Abrimos el puerto 80
+      win_firewall_rule:
+        name: HTTP
+        localport: 80
+        action: allow
+        direction: in
+        protocol: tcp
+        state: present
+        enabled: yes
     - name: Uninstall MSI of Apache
       win_package:
         path: 'C:\Temp\httpd-2.2.25-win32-x86-no_ssl.msi'
@@ -46,5 +55,14 @@
     - name: Remove Service Apache2.2 
       win_service:
         name: Apache2.2 
+        state: absent
+      tags: never,uninstall
+    - name: Cerramos el puerto 80
+      win_firewall_rule:
+        name: HTTP
+        localport: 80
+        action: allow
+        direction: in
+        protocol: tcp
         state: absent
       tags: never,uninstall
