@@ -1,0 +1,10 @@
+---
+- hosts: "{{ hosts }}"
+  tasks:
+    - name: creamos nuestro template
+      win_template:
+        src: "/var/tmp/windows_file.conf.j2"
+        dest: C:\Temp\file.conf
+        
+
+
