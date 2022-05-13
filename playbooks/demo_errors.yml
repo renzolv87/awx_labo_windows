@@ -3,9 +3,6 @@
   tasks:
     - name: get files
       win_uri:
-        url: "http://{{ item }}"
+        url: "http://{{ hosts }}"
       ignore_errors: true
-      with_items:
-        - windows01
-        - windows02
-        - windows03
+
