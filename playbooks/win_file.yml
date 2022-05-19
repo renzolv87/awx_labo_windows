@@ -22,7 +22,7 @@
      win_owner:
        path: "C:\\Temp\\{{ filename }}.txt"
        user: "{{ fileowner }}"
-     when: "{{ item }} is defined"
+     when: vars[item] is defined
      with_items:
        - filegroup
        - filename
