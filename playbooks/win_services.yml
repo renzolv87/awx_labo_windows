@@ -5,3 +5,4 @@
      win_service:
       name: "{{ servicio }}"
       state: "{{ accion }}"
+     when: servicio is defined and accion is defined
