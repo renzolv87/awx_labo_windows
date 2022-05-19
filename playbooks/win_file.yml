@@ -5,19 +5,26 @@
      win_file:
        path: C:\Temp
        state: directory
-   - name: Crear fichero {{ filename }} con contenido
+   - name: "Crear fichero {{ filename }} con contenido"
      win_copy:
        dest: "C:\\Temp\\{{ filename }}.txt"
        content: "{{ contenido }}"
-     when: contenido is defined
-   - name: Nos aseguramos que el usuario {{ fileowner }} existe
+     when: contenido is defined and filename is defined
+   - name: "Nos aseguramos que el usuario {{ fileowner }} existe"
      win_user:
        name: "{{ fileowner }}"
        description: "usuario creado por ansible"
        state: present
        groups:
          - Users
-   - name: Seteamos permisos {{ filegroup }} a fichero
+     when: fileowner is defined
+   - name: "Seteamos permisos {{ filegroup }} a fichero"
      win_owner:
        path: "C:\\Temp\\{{ filename }}.txt"
        user: "{{ fileowner }}"
+     when: {{ item }} is defined
+     with_items:
+       - filegroup
+       - filename
+       - fileowner
+     
