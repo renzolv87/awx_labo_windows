@@ -1,0 +1,8 @@
+---
+- hosts: "{{ hosts }}"
+  tasks:
+    - name: creo usuario con passwd encriptado
+      win_user:
+        name: pepe
+        password: "{{ pass }}"
+        state: present
