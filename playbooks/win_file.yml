@@ -1,9 +1,9 @@
 ---
 - hosts: "{{ hosts }}"
   tasks:
-   - name: Creamos directorio C:\Temp
+   - name: Creamos directorio C:\\Temp
      win_file:
-       path: C:\Temp
+       path: C:\\Temp
        state: directory
    - name: "Crear fichero {{ filename }} con contenido"
      win_copy:
