@@ -1,14 +1,21 @@
 ---
 - hosts: "{{ hosts }}"
   tasks:
-    - name: get files
+    - name: validar conexion a apache
       block:
-        - win_uri:
-            url: "http://{{ hosts }}"
+        - name: La web responde?
+          win_uri:
+            url: "http://localhost"
       rescue:
-        - debug:
-            msg: "Debes levantar apache"
+        - name: Asumo que el servicio Apache2.2 esta parado, por lo tanto lo levanto
+          win_service:
+            name: Apache2.2
+            state: started
       always:
-        - debug:
-            msg: "Siempre ejecuto esto"
+        - name: La web responde?
+          win_uri:
+            url: "http://localhost"
+        - name: Muestro un mensaje
+          debug:
+            msg: "funciono!!!"
        
