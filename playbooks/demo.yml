@@ -20,8 +20,15 @@
         line: 'ServerAdmin renzo@windows.com'
     - name: Creating index file
       win_copy:
-        content: 'Hello World!'
         dest: C:\Program Files (x86)\Apache Software Foundation\Apache2.2\htdocs\index.html
+        content: |
+          <html>
+          <body>
+          <h1>It works!</h1>
+          Que bonito!
+          Que Bonito!
+          quE bOnitO!
+          </body>
     - name: Check if Service Apache2.2 exists
       win_service:
         name: Apache2.2 
