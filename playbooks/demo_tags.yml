@@ -68,12 +68,12 @@
       win_package:
         path: 'C:\Temp\httpd-2.2.25-win32-x86-no_ssl.msi'
         state: absent
-      tags: uninstall
+      tags: [ uninstall, never ]
     - name: Remove Service Apache2.2 
       win_service:
         name: Apache2.2 
         state: absent
-      tags: uninstall
+      tags: [ uninstall, never ]
     - name: Cerramos el puerto 80
       win_firewall_rule:
         name: HTTP
@@ -82,4 +82,4 @@
         direction: in
         protocol: tcp
         state: absent
-      tags: uninstall
+      tags: [ uninstall, never ]
