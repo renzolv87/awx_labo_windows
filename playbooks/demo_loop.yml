@@ -25,3 +25,16 @@
       with_items:
         - { user: 'rlujan', group: 'unix' }
         - { user: 'dbolivar', group: 'db' }
+
+    - name: creamos usuarios
+      win_user:
+        name: "{{ item.usuario }}"
+        groups: "{{ item.grupo }}"
+        description: "hola que tal"
+        state: present
+      with_items:
+      - { usuario: 'elena', grupo: 'Administrators' }
+      - { usuario: 'renzo', grupo: 'Users' }
+      - { usuario: 'jordi', grupo: 'Administrators' }
+      - { usuario: 'carlos', grupo: 'Administrators' }
+  
