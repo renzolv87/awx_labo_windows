@@ -1,10 +1,15 @@
 ---
 - hosts: "{{ hosts }}"
   tasks:
-    - name: creamos nuestro template
-      win_template:
-        src: "/var/tmp/windows_file.conf.j2"
-        dest: C:\Temp\file.conf
-        
-
-
+  - name: crear un directorio temporal
+    win_file:
+      path: C:\Temp
+      state: directory
+  - name: copiar un fichero estatico
+    win_copy:
+      src: /tools/git_repositories/ansible_rlujan/awx_labo_windows/test.conf
+      dest: C:\Temp\test.conf
+  - name: fichero de configuracion dinamico
+    win_template:
+      src: /tools/git_repositories/ansible_rlujan/awx_labo_windows/template_ejemplo.j2
+      dest: C:\Temp\test2.conf
