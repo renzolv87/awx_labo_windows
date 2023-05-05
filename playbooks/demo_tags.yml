@@ -1,3 +1,131 @@
+T-Systems GIT RepositorySkip to content
+
+Activity
+Milestones
+Snippets
+Search or jump to…
+
+A
+awx_labo_windows
+Project
+Repository
+Files
+Commits
+Branches
+Tags
+Contributors
+Graph
+Compare
+Charts
+Issues
+0
+Merge Requests
+0
+CI / CD
+Operations
+Wiki
+Snippets
+Settings
+Collapse sidebar
+awx_formacion
+awx_labo_windows
+Repository
+master
+awx_labo_windows
+ playbooks
+ demo_tags.yml
+ 
+RENZO LUJAN VASQUEZ's avatar
+mejoro contenido de pagina web
+RENZO LUJAN VASQUEZ authored 1 week ago
+e09c1f76
+ demo_tags.yml 2.41 KB
+ 
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
 ---
 - hosts: "{{ hosts }}"
   tasks:
@@ -24,8 +152,15 @@
       tags: config
     - name: Creating index file
       win_copy:
-        content: 'Hello World!'
         dest: C:\Program Files (x86)\Apache Software Foundation\Apache2.2\htdocs\index.html
+        content: |
+          <html>
+          <body>
+          <h1>It works!</h1>
+          Que bonito!
+          Que Bonito!
+          quE bOnitO!
+          </body>
       tags: config
     - name: Check if Service Apache2.2 exists
       win_service:
